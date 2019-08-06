@@ -3,8 +3,10 @@
     <a [routerLink]="['/']" class="logo"></a>
     <span class="example-spacer"></span>
     <a class="links side" [routerLink]="['/auth/login']" *ngIf="!user">Login</a>
+    <!-- TODO here: add page that has API for chipschach levels and sets flags -->
     <div>
       <a class="links side" *ngIf="user" [matMenuTriggerFor]="menu">
+          <!-- <a class="links side" (click)="logout()">Logout</a> -->
         <mat-icon>account_circle</mat-icon>{{user.fullname}}
       </a>
       <mat-menu #menu="matMenu">
