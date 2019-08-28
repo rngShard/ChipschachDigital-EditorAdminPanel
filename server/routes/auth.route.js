@@ -11,6 +11,7 @@ module.exports = router;
 router.post('/register', asyncHandler(register), login);
 router.post('/login', passport.authenticate('local', { session: false }), login);
 router.get('/me', passport.authenticate('jwt', { session: false }), login);
+router.get('/stats', asyncHandler(getUserStats));
 
 
 async function register(req, res, next) {
@@ -25,4 +26,15 @@ function login(req, res) {
   let user = req.user;
   let token = authCtrl.generateToken(user);
   res.json({ user, token });
+}
+
+async function getUserStats(req, res) {
+  let count = await userCtrl.countUsers();
+  let user = await userCtrl.getUsers();
+  // TODO: delete user password & id info
+
+  res.json({
+    count: count,
+    user: user
+  });
 }
