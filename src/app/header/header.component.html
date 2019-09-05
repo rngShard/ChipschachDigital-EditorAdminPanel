@@ -1,6 +1,7 @@
 <header>
   <mat-toolbar color="primary">
-    <a [routerLink]="['/']" class="logo"></a>
+    <a [routerLink]="['/']" class="logo" style="margin-right: 1.5em;"></a>
+    <button mat-raised-button *ngIf="user" [routerLink]="['/admin']">Level-Administration</button>
     <span class="example-spacer"></span>
     <a class="links side" [routerLink]="['/auth/login']" *ngIf="!user">Login</a>
     <!-- TODO here: add page that has API for chipschach levels and sets flags -->
@@ -10,7 +11,6 @@
         <mat-icon>account_circle</mat-icon>{{user.fullname}}
       </a>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item *ngIf="user && user.isAdmin" [routerLink]="['/admin']">admin</button>
         <button mat-menu-item (click)="logout()">logout</button>
       </mat-menu>
     </div>
