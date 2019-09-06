@@ -21,6 +21,8 @@ import {
   MatProgressBarModule,
   MatFormFieldModule,
   MatSelectModule,
+  MatTableModule,
+  MatPaginatorModule,
 } from '@angular/material';
 
 @NgModule({
@@ -46,6 +48,9 @@ import {
     MatFormFieldModule,
     MatSelectModule,
     FlexLayoutModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatToolbarModule,
@@ -68,6 +73,9 @@ import {
     MatFormFieldModule,
     MatSelectModule,
     FlexLayoutModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
   ],
   declarations: [],
 })
