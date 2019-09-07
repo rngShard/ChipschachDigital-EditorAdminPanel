@@ -53,6 +53,7 @@ import {
     MatFormFieldModule,
     MatPaginatorModule,
     MatSortModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatToolbarModule,
@@ -79,6 +80,7 @@ import {
     MatFormFieldModule,
     MatPaginatorModule,
     MatSortModule,
+    MatSnackBarModule,
   ],
   declarations: [],
 })

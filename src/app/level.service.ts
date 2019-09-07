@@ -14,4 +14,8 @@ export class LevelService {
   getLevels(): Observable<any> {
     return this.http.get(this.LEVELS_ENDPOINT);
   }
+
+  updateLevel(id: string, query: string): Observable<any> {
+    return this.http.get(`${this.LEVELS_ENDPOINT}/${id}/${query}`);
+  }
 }

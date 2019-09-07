@@ -10,7 +10,8 @@ const LevelSchema = new mongoose.Schema({
   description: {
       de: String,
       en: String
-  }
+  },
+  reviewStatus: Number
 }, {
   versionKey: false
 });

@@ -17,16 +17,17 @@ const Level = require('../models/level.model');
 
 
 module.exports = {
-  getAll
+  getAll,
+  update
 }
-
-// async function insert(user) {
-//   user = await Joi.validate(user, userSchema, { abortEarly: false });
-//   user.hashedPassword = bcrypt.hashSync(user.password, 10);
-//   delete user.password;
-//   return await new User(user).save();
-// }
 
 async function getAll() {
   return await Level.find();
+}
+
+async function update(id, query) {
+  let mongoQueryObject = JSON.parse(query);
+  console.log(`{_id: ${id}},${mongoQueryObject}`);
+  // return;
+  return await Level.updateOne({_id: id}, mongoQueryObject);
 }
