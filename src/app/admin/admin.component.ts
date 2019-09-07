@@ -17,7 +17,7 @@ import { BoardPreviewDialogComponent } from './boardPreviewDialog/board-preview-
 export class AdminComponent implements OnInit {
   private levels: Level[];
 
-  displayedColumns: string[] = ['name_de', 'name_en', 'description_de', 'description_en', 'reviewStatus', 'dialog'];
+  displayedColumns: string[] = ['type', 'name_de', 'name_en', 'description_de', 'description_en', 'reviewStatus', 'creator', 'dialog'];
   dataSource: MatTableDataSource<Level>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -83,7 +83,7 @@ export class AdminComponent implements OnInit {
   }
 
   openDialog(board: any) {
-    console.log(board);
+    console.log('Previewing board ', board);
     this.dialog.open(BoardPreviewDialogComponent, {
       width: 'calc(40em + 2*24px)',   // Angular Material Dialog has padding 24px by default
       height: 'calc(40em + 2*24px)',

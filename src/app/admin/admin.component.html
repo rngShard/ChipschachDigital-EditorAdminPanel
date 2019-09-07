@@ -4,43 +4,43 @@
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
-    <!-- <ng-container matColumnDef="type">
+    <ng-container matColumnDef="type">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Level Typ </th>
       <td mat-cell *matCellDef="let row">
         {{row.type}}
         <ng-container *ngIf="row.type !== 'minischach'"> / {{row.subtype}} </ng-container>
-        <ng-container *ngIf="row.type !== 'mp'"> | Sieg: {{row.win}} </ng-container>
+        <!-- <ng-container *ngIf="row.type !== 'mp'"> | Sieg: {{row.win}} </ng-container> -->
       </td>
-    </ng-container> -->
+    </ng-container>
     <ng-container matColumnDef="name_de">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name (DE) </th>
+      <th mat-header-cell *matHeaderCellDef> Name (DE) </th>
       <td mat-cell *matCellDef="let row">
         <mat-form-field>
-          <input matInput [value]="row.name.de !== undefined ? row.name.de : 'undefined'" (change)="levelUpdateLangAttr(row._id, 'name', 'de', $event)">
+          <input matInput [value]="row.name !== undefined ? row.name.de : 'undefined'" (change)="levelUpdateLangAttr(row._id, 'name', 'de', $event)">
         </mat-form-field>
       </td>
     </ng-container>
     <ng-container matColumnDef="name_en">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name (EN) </th>
+      <th mat-header-cell *matHeaderCellDef> Name (EN) </th>
       <td mat-cell *matCellDef="let row">
         <mat-form-field>
-          <input matInput [value]="row.name.en !== undefined ? row.name.en : 'undefined'" (change)="levelUpdateLangAttr(row._id, 'name', 'en', $event)">
+          <input matInput [value]="row.name !== undefined ? row.name.en : 'undefined'" (change)="levelUpdateLangAttr(row._id, 'name', 'en', $event)">
         </mat-form-field>
       </td>
     </ng-container>
     <ng-container matColumnDef="description_de">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Beschreibung (DE) </th>
+      <th mat-header-cell *matHeaderCellDef> Beschreibung (DE) </th>
       <td mat-cell *matCellDef="let row">
         <mat-form-field floatLabel="always">
-          <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" (change)="levelUpdateLangAttr(row._id, 'description', 'de', $event)">{{row.description.de}}</textarea>
+          <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" (change)="levelUpdateLangAttr(row._id, 'description', 'de', $event)">{{row.description !== undefined ? row.description.de : 'undefined'}}</textarea>
         </mat-form-field>
       </td>
     </ng-container>
     <ng-container matColumnDef="description_en">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Beschreibung (EN) </th>
+      <th mat-header-cell *matHeaderCellDef> Beschreibung (EN) </th>
       <td mat-cell *matCellDef="let row">
         <mat-form-field floatLabel="always">
-          <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" (change)="levelUpdateLangAttr(row._id, 'description', 'en', $event)">{{row.description.en}}</textarea>
+          <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" (change)="levelUpdateLangAttr(row._id, 'description', 'en', $event)">{{row.description !== undefined ? row.description.en : 'undefined'}}</textarea>
         </mat-form-field>
       </td>
     </ng-container>
@@ -53,16 +53,21 @@
               <mat-option value="0">FRESH (frisch aus dem Editor)</mat-option>
               <mat-option value="1">REVIEWED (inspiziert & für gut befunden)</mat-option>
               <mat-option value="2">OFFICIAL (offizielles Level)</mat-option>
-              <mat-option value="undefined">undefined</mat-option>
+              <mat-option value="undefined">undefined (soll gelöscht werden)</mat-option>
             </mat-select>
           </mat-form-field>
       </td>
       <td mat-cell *matCellDef="let row"> {{row.reviewStatus}} </td>
     </ng-container>
     <ng-container matColumnDef="dialog">
-      <th mat-header-cell *matHeaderCellDef> Brett-Vorschau </th>
+      <th mat-header-cell *matHeaderCellDef> Brett </th>
       <td mat-cell *matCellDef="let row">
         <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="openDialog(row.board)">launch</mat-icon>
+    </ng-container>
+    <ng-container matColumnDef="creator">
+      <th mat-header-cell *matHeaderCellDef> Ersteller </th>    <!-- mat-sort-header not working ... -->
+      <td mat-cell *matCellDef="let row">
+          {{row.contact !== undefined ? row.contact.name : '-'}} ({{row.contact !== undefined ? row.contact.email : '-'}})
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
