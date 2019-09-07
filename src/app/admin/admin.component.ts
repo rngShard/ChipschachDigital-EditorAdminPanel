@@ -10,23 +10,12 @@ import { LevelService } from '../level.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styles: [`
-    table {
-      width: 100%;
-    }
-    .mat-form-field {
-      font-size: 14px;
-      width: 100%;
-    } 
-    td, th {
-      width: 25%;
-    }
-  `]
+  styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
   private levels: Level[];
 
-  displayedColumns: string[] = ['_id', 'type', 'reviewStatus'];
+  displayedColumns: string[] = ['name_de', 'name_en', 'description_de', 'description_en', 'reviewStatus'];
   dataSource: MatTableDataSource<Level>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
