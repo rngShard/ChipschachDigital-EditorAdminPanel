@@ -27,21 +27,21 @@ export class AuthService {
     });
   }
 
-  // register(fullname : string, email : string, password : string, repeatPassword : string) : Observable <any> {
-  //   return Observable.create(observer => {
-  //     this.http.post('/api/auth/register', {
-  //       fullname,
-  //       email,
-  //       password,
-  //       repeatPassword
-  //     }).subscribe((data : any) => {
-  //       observer.next({user: data.user});
-  //       this.setUser(data.user);
-  //       this.token.saveToken(data.token);
-  //       observer.complete();
-  //     })
-  //   });
-  // }
+  register(fullname : string, email : string, password : string, repeatPassword : string) : Observable <any> {
+    return Observable.create(observer => {
+      this.http.post('/api/auth/register', {
+        fullname,
+        email,
+        password,
+        repeatPassword
+      }).subscribe((data : any) => {
+        observer.next({user: data.user});
+        this.setUser(data.user);
+        this.token.saveToken(data.token);
+        observer.complete();
+      })
+    });
+  }
 
   setUser(user): void {
     if (user) user.isAdmin = (user.roles.indexOf('admin') > -1);
@@ -69,5 +69,15 @@ export class AuthService {
     this.token.signOut();
     this.setUser(null);
     delete (<any>window).user;
+  }
+
+
+  userAvailable(): Observable<any> {
+    return Observable.create(observer => {
+      this.http.get('/api/auth/stats').subscribe(data => {
+        observer.next(data);
+        observer.complete();
+      })
+    });
   }
 }

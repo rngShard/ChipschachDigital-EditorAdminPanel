@@ -16,12 +16,22 @@ export class LoginComponent implements OnInit {
   password: string;
 
   ngOnInit() {
+    this.authService.userAvailable().subscribe(data => {
+      console.log(data);
+      if  (data.count === 0) {
+        this.authService.register('Ralf Schreiber', 'mail@schach-fuer-kids.de', 'sfk-admin_4711', 'sfk-admin_4711').subscribe(usrData => {
+          console.log('No users found; registered new user: ', usrData);
+          console.log('Username: mail@schach-fuer-kids.de');
+          console.log('Password: sfk-admin_4711');
+        });
+      }
+    });
   }
 
   login(): void {
     this.authService.login(this.email, this.password)
     .subscribe(data => {
-      this.router.navigate(['']);
+      this.router.navigate(['/admin']);
     })
   }
 

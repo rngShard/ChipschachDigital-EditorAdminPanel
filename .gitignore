@@ -45,3 +45,8 @@ Thumbs.db
 
 # Env file
 *.env
+
+
+# Custom
+.vscode/
+package-lock.json
