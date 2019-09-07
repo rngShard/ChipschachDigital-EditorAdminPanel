@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 
 import { Level } from './level';
 import { LevelService } from '../level.service';
+import { BoardPreviewDialogComponent } from './boardPreviewDialog/board-preview-dialog.component';
 
 
 @Component({
@@ -16,13 +17,16 @@ import { LevelService } from '../level.service';
 export class AdminComponent implements OnInit {
   private levels: Level[];
 
-  displayedColumns: string[] = ['name_de', 'name_en', 'description_de', 'description_en', 'reviewStatus'];
+  displayedColumns: string[] = ['name_de', 'name_en', 'description_de', 'description_en', 'reviewStatus', 'dialog'];
   dataSource: MatTableDataSource<Level>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private levelService: LevelService, private _snackBar: MatSnackBar) {
+  constructor(
+    private levelService: LevelService,
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog) {
     this.levels = [];
     this.dataSource = new MatTableDataSource();
   }
@@ -75,6 +79,15 @@ export class AdminComponent implements OnInit {
       } else {
         this._snackBar.open("FEHLER - Review Status konnte nicht geändert werden", "", {duration: 2000});
       }
+    });
+  }
+
+  openDialog(board: any) {
+    console.log(board);
+    this.dialog.open(BoardPreviewDialogComponent, {
+      width: 'calc(40em + 2*24px)',   // Angular Material Dialog has padding 24px by default
+      height: 'calc(40em + 2*24px)',
+      data: {board: board}
     });
   }
 }

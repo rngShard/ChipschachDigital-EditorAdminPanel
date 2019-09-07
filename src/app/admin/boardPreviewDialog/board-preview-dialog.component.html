@@ -1,0 +1,9 @@
+<div id="board">
+  <ng-container *ngFor="let fig of data.board">
+    <div class="figure" [ngStyle]="{
+      'background-image': 'url(../../../assets/boardPreview/' + fig.type + fig.color + '.png)',
+      'margin-left': 'calc(' + (fig.x - 1) + '*5em)',
+      'margin-top': 'calc(' + (fig.y - 1) + '*5em)'
+    }"></div>
+  </ng-container>
+</div>

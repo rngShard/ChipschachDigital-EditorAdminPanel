@@ -6,15 +6,20 @@ import {AdminComponent} from './admin.component';
 import {OnlyAdminUsersGuard} from './admin-user-guard';
 import { LevelService } from '../level.service';
 import { SharedModule } from '../shared/shared.module';
+import { BoardPreviewDialogComponent } from './boardPreviewDialog/board-preview-dialog.component';
 
 @NgModule({
   declarations: [
-    AdminComponent
+    AdminComponent,
+    BoardPreviewDialogComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule
+  ],
+  entryComponents: [
+    BoardPreviewDialogComponent
   ],
   providers: [
     OnlyAdminUsersGuard,

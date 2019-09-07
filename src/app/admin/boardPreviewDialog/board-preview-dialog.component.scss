@@ -1,0 +1,15 @@
+div#board {
+    position: absolute;
+    // margin: 0 auto;
+    width: 40em;
+    height: 40em;
+    background-image: url('../../../assets/boardPreview/board.png');
+    background-size: cover;
+}
+
+div.figure {
+    position: absolute;
+    width: 5em;
+    height: 5em;
+    background-size: cover;
+}

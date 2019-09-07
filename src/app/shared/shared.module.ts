@@ -54,6 +54,7 @@ import {
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
+    MatDialogModule,
   ],
   exports: [
     MatToolbarModule,
@@ -81,6 +82,7 @@ import {
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
+    MatDialogModule,
   ],
   declarations: [],
 })
